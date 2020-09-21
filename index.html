@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>进出校卡片生成</title>
+        <style>
+            form, input {
+                margin: 1rem;
+                font-size: 3rem;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="passcard.html" method="get">
+            <input type="text" name="name" placeholder="姓名"> <br>
+            <input type="text" name="number" placeholder="学号"> <br>
+            <input type="text" name="area" placeholder="校区"> <br>
+            <input type="text" name="college" placeholder="学院"> <br>
+            <input type="text" name="class" placeholder="班级"> <br>
+            <input type="radio" name="type" value="out"> 出校 <br>
+            <input type="radio" name="type" value="in"> 进校 <br>
+            <input type="submit" value="生成">
+        </form>
+    </body>
+</html>

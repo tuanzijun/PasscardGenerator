@@ -1,0 +1,201 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>进出校扫码</title>
+        <style>
+            @keyframes scaleDraw {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+                0%{
+                    transform: scale(1);  /*开始为原始大小*/
+                }
+                25%{
+                    transform: scale(1.1); /*放大1.1倍*/
+                }
+                50%{
+                    transform: scale(1);
+                }
+                75%{
+                    transform: scale(1.1);
+                }
+            }
+            body {
+                background-color: #3bb471;
+                height: 100%;
+            }
+            #btn-close {
+                margin: 2.3rem 0 0 92%;
+                right: 0;
+            }
+            #title {
+                margin-top: -3.5rem;
+                margin-bottom: 3.6rem;
+                color: white;
+                text-align: center;
+            }
+            #title h1 {
+                margin-top: 1rem;
+                margin-bottom: 1.2rem;
+                font-size: 4.5rem;
+            }
+            #title p {
+                color: #f9fff5;
+                margin-top: 0;
+                font-size: 2.5rem;
+            }
+            #card {
+                background-color: white;
+                border-radius: 2.5rem;
+                width: 80%;
+                height: 63rem;
+                margin: 0 auto;
+            }
+            #card-title {
+                color: white;
+                font-size: 2.5rem;
+                font-weight: bold;
+                text-align: center;
+                width: 92%;
+                height: 4.8rem;
+                margin: 0 auto;
+                padding-top: 1rem;
+                border-radius: 0 0 5rem 5rem;
+                background-color: #8ad1a9;
+            }
+            #card-info {
+                padding-top: 0.5rem;
+                width: 75%;
+                margin: 2rem auto;
+            }
+            #card-info > img {
+                float: left;
+            }
+            #card-info > div {
+                float: right;
+            }
+            #name {
+                margin: 0.5rem 0;
+                font-weight: bold;
+                font-size: 2.4rem;
+                color: #323232;
+                font-family: PingFang SC,Helvetica,STHeiti STXihei,Microsoft YaHei,Tohoma,Arial,sans-serif;
+            }
+            .detail {
+                margin: 0.3rem 0;
+                font-size: 2.1rem;
+                color: #656565;
+            }
+            #sign {
+                text-align: center;
+                color: #3bb471;
+                font-size: 5.5rem;
+                font-weight: bold;
+                width: 100%;
+                margin: 1.7rem auto 0;
+            }
+            #sign p {
+                margin: 0;
+            }
+            #sign img {
+                -webkit-animation-name: scaleDraw; /*关键帧名称*/
+                -webkit-animation-timing-function: ease-in-out; /*动画的速度曲线*/
+                -webkit-animation-iteration-count: infinite;  /*动画播放的次数*/
+                -webkit-animation-duration: 5s; /*动画所花费的时间*/
+            }
+            #date {
+                width: 100%;
+                text-align: center;
+                font-size: 2.2rem;
+                font-family: PingFang SC,Helvetica,STHeiti STXihei,Microsoft YaHei,Tohoma,Arial,sans-serif;
+            }
+            #date span:first-child {
+                color: #979797;
+                margin-right: 1.5rem;
+            }
+            #date span:last-child {
+                color: #626262;
+            }
+            #check-btn {
+                position: fixed;
+                color: white;
+                width: 80%;
+                height: 5rem;
+                bottom: 2.4rem;
+                left: 10%;
+                text-align: center;
+                font-size: 2.6rem;
+                padding-top: 0.5rem;
+                border-radius: 3rem;
+                background-color: #2e8a57;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="./close.jpg" alt="" id="btn-close">
+        <div id="title">
+            <h1>返校通行卡</h2>
+            <p>疫情防控，人人有责</p>
+        </div>
+        <div id="card">
+            <div id="card-title">
+                <span id="type-check"></span>
+            </div>
+            <div id="card-info">
+                <img src="./head.jpg" width=33.5%>
+                <div>
+                    <p id="name"></p>
+                    <p class="detail" id='area'></p>
+                    <p class="detail" id='college'></p>
+                    <p class="detail" id='class'></p>
+                </div>
+                <div id="sign">
+                    <img src="./arrow.jpg" width=67%>
+                    <p id="type"></p>
+                </div>
+                <div id="date">
+                    <span id="type-date"></span>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+        </div>
+        <div id="check-btn">
+            <span>确定</span>
+        </div>
+        <script>
+            function getQueryVariable(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = decodeURI(window.location.search).substr(1).match(reg); //匹配目标参数
+                if (r != null) return unescape(r[2]); return null; //返回参数值
+            }
+            var name = getQueryVariable('name');
+            var number = getQueryVariable('number');
+            var area = getQueryVariable('area');
+            var college = getQueryVariable('college');
+            var class_ = getQueryVariable('class');
+            var type = getQueryVariable('type');
+            document.getElementById('name').innerText = name + '-' + number;
+            document.getElementById('area').innerText = area + '校区';
+            document.getElementById('college').innerText = college;
+            document.getElementById('class').innerText = class_;
+            type = (type === 'in' ? '进校' : '出校');
+            document.getElementById('type-check').innerText = type + '信息确认';
+            document.getElementById('type').innerText = type;
+            document.getElementById('type-date').innerText = type + '时间:';
+
+            var a = new Date();
+            var time = '';
+            time += a.getFullYear() + '-';
+
+            var month = a.getMonth() + 1;
+            var date = a.getDate();
+            var hours = a.getHours();
+            var minutes = a.getMinutes();
+            var seconds = a.getSeconds();
+
+            time += (month < 10 ? '0' + month : month) + '-';
+            time += (date < 10 ? '0' + date : date) + ' ';
+            time += (hours < 10 ? '0' + hours : hours) + ':';
+            time += (minutes < 10 ? '0' + minutes : minutes) + ':';
+            time += (seconds < 10 ? '0' + seconds : seconds);
+            document.getElementById("current-time").innerText = time;
+        </script>
+    </body>
+</html>
