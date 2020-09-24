@@ -2,32 +2,58 @@
     <head>
         <meta charset="UTF-8">
         <title>进出校卡片生成</title>
+        <link rel="stylesheet" type="text/css" href="style.css" /> 
         <style>
             form, input {
-                margin: 1rem;
-                font-size: 3rem;
+                font-size: 1.5rem;
             }
         </style>
     </head>
     <body>
-        <form action="passcard.html" method="get">
-            <input type="text" name="name" placeholder="姓名"> <br>
-            <input type="text" name="number" placeholder="学号"> <br>
-            <input type="text" name="area" placeholder="校区"> <br>
-            <input type="text" name="college" placeholder="学院"> <br>
-            <input type="text" name="class" placeholder="班级"> <br>
-            <input type="radio" name="type" value="out"> 出校 <br>
-            <input type="radio" name="type" value="in"> 进校 <br>
-            <input type="submit" value="生成">
-        </form>
-        <p>注意事项</p>
-        <ul>
-            <li>
-                请在微信中使用
-            </li>
-            <li>
-                本项目仅为学习使用，因不正当使用所带来的后果与本项目无关
-            </li>
-        </ul>
+        <div class="container">
+            <div class="box">
+                <div class= "Image">
+                    <img src="favicon.ico">
+                </div>
+                <form action="passcard.html" method="get">
+                    <div  class="input-wrapper">
+                        <input type="text" name="name" placeholder="姓名"> 
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="number" placeholder="学号"> 
+                    </div>
+                    <div class="input-wrapper">
+                        <!-- <input type="text" name="area" placeholder="校区">  -->
+                        <select name="area" id="school_area" placeholder="校区">
+                            <option value=" " selected = "selected">--请选择校区--</option>
+                            <option value="小营">小营校区</option>
+                            <option value="健翔桥">健翔桥校区</option>
+                            <option value="清河">清河校区</option>
+                        </select>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="college" placeholder="学院"> 
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="class" placeholder="班级"> 
+                    </div>
+                    <input type="radio" name="type" value="out"> 出校 
+                    <input type="radio" name="type" value="in"> 进校 
+                    <input type="submit" value="生成" >
+                </form> 
+            </div>
+        </div>
+       
+        <div class="foot">
+            <p>注意事项</p>
+            <ul>
+                <li>
+                    请在微信中使用
+                </li>
+                <li>
+                    本项目仅为学习使用，因不正当使用所带来的后果与本项目无关
+                </li>
+            </ul>   
+        </div>    
     </body>
 </html>
